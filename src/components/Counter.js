@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./Counter.css";
+import CounterDisplay from "./CounterDisplay";
+import CounterController from "./CounterController";
 
-const Counter = () => {
+const Counter = (props) => {
     //let counter = 0;
     const [counter,setCounter] = useState(0);
-
-    console.log("component", counter);
 
     function artir() {
         setCounter(counter+1);
@@ -19,11 +19,8 @@ const Counter = () => {
 
     return (
         <>
-            <h2>Counter: {counter}</h2>
-            <div>
-              <button disabled={counter>=10 ? true: false} onClick={artir}>+1</button>
-              <button disabled={counter<=0 ? true: false} onClick={azalt}>-1</button>
-            </div>
+            <CounterDisplay sayac={counter} name={props.name /*Yöntem 1*/}/>
+            <CounterController sayac={counter} increase={artir} decrease={azalt}/>
         </>
     )
 }
