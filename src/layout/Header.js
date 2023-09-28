@@ -55,7 +55,7 @@ function Header(props) {
             color: black; /* p'nin içindeki a'lar */
         }
 
-        .else {
+        &.else {
             color: blue; /* class'ı else olan a tagleri */
         }
 
