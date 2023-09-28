@@ -1,15 +1,25 @@
-import './User.css';
+import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
+import "./User.css";
 
 function User(props) {
-    const { user } = props;
+  const { user } = props;
 
-    return (
-        <div className="user-card">
-            <h2>{user.first_name}</h2>
-            <p>{user.email}</p>
-            <img src={user.avatar} alt={user.first_name}/>
-        </div>
-    )
+  //template - JSX
+  return (
+    <Card className="shadow-sm my-2"
+      style={{
+        width: "18rem",
+      }}
+    >
+      <img src={user.avatar} alt={user.first_name} />
+      <CardBody>
+        <CardTitle tag="h5">{user.first_name}</CardTitle>
+        <CardSubtitle className="mb-2 text-muted" tag="h6">
+          {user.email}
+        </CardSubtitle>
+      </CardBody>
+    </Card>
+  );
 }
 
 export default User;
