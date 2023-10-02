@@ -1,0 +1,36 @@
+.side-container {
+    width: 20%;
+    background-color: blue;
+  }
+
+.side-container a {
+    display: block;
+    padding: 5%;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.side-container a:hover {
+
+    background-color: red;
+    color:white
+
+}
+
+.side-container .active {
+    background-color: aqua;
+}
+
+.side-container .user-list {
+    background-color: inherit;
+    padding: 2%;
+    text-align: left;
+    margin: 0.5rem;
+    color: white;
+}
+
+
