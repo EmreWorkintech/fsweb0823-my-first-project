@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import SideBar from "./layout/SideBar";
 import Footer from "./layout/Footer";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(user);
@@ -26,12 +27,12 @@ function App() {
       });
   }, []); //didMount
 
-  function handleUserChange() {
-    const newUser = {
+  function handleUserChange(user) {
+    /*     const newUser = {
       ...user,
       name: "Yeni User" + Math.floor(Math.random() * 100),
-    };
-    setLoggedUser(newUser);
+    }; */
+    setLoggedUser(user);
   }
   //console.log("user", loggedUser);
 
@@ -45,9 +46,14 @@ function App() {
       />
       <div className="middle-area">
         <SideBar users={users} />
-        <Main name={loggedUser.name} users={users} />
+        <Main
+          name={loggedUser.name}
+          handleUserChange={handleUserChange}
+          users={users}
+        />
       </div>
       <Footer />
+      <ToastContainer />
     </>
   );
 }

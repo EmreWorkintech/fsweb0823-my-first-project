@@ -8,7 +8,7 @@ function User(props) {
   //contional rendering
   if (type === "listMode") {
     return (
-      <CardTitle tag="h5">{user.first_name + " " + user.last_name}</CardTitle>
+      <CardTitle tag="h6">- {user.first_name + " " + user.last_name}</CardTitle>
     );
   } else {
     return (

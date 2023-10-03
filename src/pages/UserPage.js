@@ -14,7 +14,7 @@ const Users = () => {
   }
 
   function handleNavigation() {
-    history.push("/counter");
+    history.push("/");
   }
   useEffect(() => {
     axios
@@ -33,7 +33,7 @@ const Users = () => {
   return (
     <>
       <Button onClick={handlePrev}>Geri</Button>
-      <Button onClick={handleNavigation}>Counter Page</Button>
+      <Button onClick={handleNavigation}>Ana Sayfa</Button>
       <Card
         className="shadow-sm my-2"
         style={{
