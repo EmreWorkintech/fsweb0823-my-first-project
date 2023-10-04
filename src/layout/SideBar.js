@@ -13,6 +13,12 @@ function SideBar(props) {
         Counter
       </NavLink>
       <NavLink
+        to="/user/add"
+        className={(isActive) => (isActive ? "active" : null)}
+      >
+        Add User
+      </NavLink>
+      <NavLink
         to="/users"
         className={(isActive) => (isActive ? "active" : null)}
       >

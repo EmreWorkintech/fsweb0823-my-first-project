@@ -4,9 +4,10 @@ import Users from "../pages/Users";
 import NotFound from "../pages/NotFound";
 import User from "../pages/UserPage";
 import Login from "../pages/Login";
+import AddUser from "../pages/AddUser";
 
 function Main(props) {
-  const { name, users, handleUserChange } = props; //yöntem 2
+  const { name, users, handleUserChange, handleAddNewUser } = props; //yöntem 2
 
   return (
     <div className="main-container">
@@ -22,6 +23,9 @@ function Main(props) {
         </Route>
         <Route path="/users/:id">
           <User />
+        </Route>
+        <Route exact path="/user/add">
+          <AddUser handleAddNewUser={handleAddNewUser} />
         </Route>
         <Route path="*">
           <NotFound />

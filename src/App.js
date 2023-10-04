@@ -36,6 +36,9 @@ function App() {
   }
   //console.log("user", loggedUser);
 
+  function addNewUser(user) {
+    setUsers([...users, user]);
+  }
   return (
     <>
       <Header
@@ -50,6 +53,7 @@ function App() {
           name={loggedUser.name}
           handleUserChange={handleUserChange}
           users={users}
+          handleAddNewUser={addNewUser}
         />
       </div>
       <Footer />
