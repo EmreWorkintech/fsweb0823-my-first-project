@@ -119,7 +119,7 @@ function AddUser(props) {
           value={formData.first_name} //controlled component
           onChange={handleChange}
         />
-        <p>{errors.first_name}</p>
+        <p data-cy="name-error">{errors.first_name}</p>
       </div>
       <div>
         <label htmlFor="last_name">Surname:</label>
@@ -243,7 +243,7 @@ function AddUser(props) {
         </label>
         <p>{errors.agreement}</p>
       </div>
-      <button disabled={!isValid} type="submit">
+      <button data-cy="submit-form-button" disabled={!isValid} type="submit">
         Kayıt
       </button>
     </form>

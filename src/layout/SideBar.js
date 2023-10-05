@@ -9,18 +9,21 @@ function SideBar(props) {
       <NavLink
         to="/counter"
         className={(isActive) => (isActive ? "active" : null)}
+        data-cy="counter-page"
       >
         Counter
       </NavLink>
       <NavLink
         to="/user/add"
         className={(isActive) => (isActive ? "active" : null)}
+        data-cy="add-user-page"
       >
         Add User
       </NavLink>
       <NavLink
         to="/users"
         className={(isActive) => (isActive ? "active" : null)}
+        data-cy="users-page"
       >
         Users
       </NavLink>
