@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
-import "react-toastify/dist/ReactToastify.css";
 import "./AddUser.css";
 
 const initialFormData = {

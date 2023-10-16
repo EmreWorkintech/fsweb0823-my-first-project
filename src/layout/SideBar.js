@@ -31,6 +31,13 @@ function SideBar(props) {
       <Route path="*/users">
         <UserList type="listMode" users={users} />
       </Route>
+      <NavLink
+        to="/contactus"
+        className={(isActive) => (isActive ? "active" : null)}
+        data-cy="contactus-page"
+      >
+        Contact Us
+      </NavLink>
     </div>
   );
 }

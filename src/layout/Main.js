@@ -5,6 +5,7 @@ import NotFound from "../pages/NotFound";
 import User from "../pages/UserPage";
 import Login from "../pages/Login";
 import AddUser from "../pages/AddUser";
+import ContactUs from "../pages/ContactUs";
 
 function Main(props) {
   const { name, users, handleUserChange, handleAddNewUser } = props; //yöntem 2
@@ -26,6 +27,9 @@ function Main(props) {
         </Route>
         <Route exact path="/user/add">
           <AddUser handleAddNewUser={handleAddNewUser} />
+        </Route>
+        <Route exact path="/contactus">
+          <ContactUs />
         </Route>
         <Route path="*">
           <NotFound />

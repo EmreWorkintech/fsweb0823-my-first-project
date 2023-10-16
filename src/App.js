@@ -9,6 +9,8 @@ import Footer from "./layout/Footer";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const [loggedUser, setLoggedUser] = useState(user);
   const [users, setUsers] = useState([]);
