@@ -1,9 +1,9 @@
-.side-container {
+/* .side-container {
     width: 20%;
     background-color: blue;
-  }
+  } */
 
-.side-container a {
+/* .side-container a {
     display: block;
     padding: 5%;
     text-decoration: none;
@@ -12,17 +12,17 @@
     width: 80%;
     margin: 1rem auto;
     text-align: center;
-}
+} */
 
-.side-container a:hover {
+/* .side-container a:hover {
 
     background-color: red;
     color:white
 
-}
+} */
 
 .side-container .active {
-    background-color: aqua;
+    background-color: rgb(12, 240, 240);
 }
 
 .side-container .user-list {

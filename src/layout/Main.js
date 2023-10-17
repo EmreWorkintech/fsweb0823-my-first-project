@@ -11,7 +11,7 @@ function Main(props) {
   const { name, users, handleUserChange, handleAddNewUser } = props; //yöntem 2
 
   return (
-    <div className="main-container">
+    <div className="main-container dark:bg-slate-900 dark:text-white">
       <Switch>
         <Route exact path="/">
           {name === "" && <Login handleUserChange={handleUserChange} />}
