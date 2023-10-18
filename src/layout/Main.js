@@ -6,6 +6,7 @@ import User from "../pages/UserPage";
 import Login from "../pages/Login";
 import AddUser from "../pages/AddUser";
 import ContactUs from "../pages/ContactUs";
+import Welcome from "../pages/Welcome";
 
 function Main(props) {
   const { name, users, handleUserChange, handleAddNewUser } = props; //yöntem 2
@@ -14,6 +15,9 @@ function Main(props) {
     <div className="main-container dark:bg-slate-900 dark:text-white">
       <Switch>
         <Route exact path="/">
+          <Welcome />
+        </Route>
+        <Route exact path="/login">
           {name === "" && <Login handleUserChange={handleUserChange} />}
         </Route>
         <Route path="/counter">

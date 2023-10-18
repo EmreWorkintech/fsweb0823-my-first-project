@@ -6,12 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const initialFormData = {
   email: "",
-  name: "",
-  surname: "",
-  age: "",
   password: "",
-  position: "",
-  agreement: false,
 };
 
 function Login(props) {
@@ -66,39 +61,6 @@ function Login(props) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          name="name"
-          placeholder="Adınız"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Surname:</label>
-        <input
-          id="surname"
-          name="surname"
-          placeholder="Soyadınızı giriniz"
-          type="text"
-          value={formData.surname}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="age">Yaşınız:</label>
-        <input
-          id="age"
-          name="age"
-          placeholder="Yaşınız"
-          type="number"
-          value={formData.age}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
         <label htmlFor="email">E-posta:</label>
         <input
           id="email"
@@ -120,55 +82,8 @@ function Login(props) {
           onChange={handleChange}
         />
       </div>
-      <p>Hangi posisyonda çalışıyorsunuz?</p>
-      <div>
-        <input
-          id="hr"
-          name="position"
-          type="radio"
-          value="hr"
-          checked={formData.position === "hr"}
-          onChange={handleChange}
-        />
-        <label htmlFor="hr">HR</label>
-      </div>
-      <div>
-        <input
-          id="sales"
-          name="position"
-          type="radio"
-          value="sales"
-          checked={formData.position === "sales"}
-          onChange={handleChange}
-        />
-        <label htmlFor="sales">Sales&Marketing:</label>
-      </div>
-      <div>
-        <input
-          id="education"
-          name="position"
-          type="radio"
-          value="education"
-          checked={formData.position === "education"}
-          onChange={handleChange}
-        />
-        <label htmlFor="education">Education:</label>
-      </div>
-      <div>
-        <input
-          id="agreement"
-          name="agreement"
-          type="checkbox"
-          checked={formData.agreement}
-          onChange={handleChange}
-        />
-        <label htmlFor="agreement">
-          {" "}
-          Şartları ve kullanım koşullarını kabul ediyorum.
-        </label>
-      </div>
 
-      <button type="submit">Kayıt</button>
+      <button type="submit">Giriş</button>
     </form>
   );
 }
