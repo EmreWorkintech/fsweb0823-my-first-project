@@ -3,6 +3,52 @@ import { getFullName } from "../utils/utils";
 import styled from "styled-components";
 import { differenceInDays, formatDistanceToNow } from "date-fns";
 import { tr } from "date-fns/locale";
+const Title = styled.h1`
+  text-align: center;
+  color: ${(props) => {
+    /* props ile data almak için*/
+    switch (props.type) {
+      case "primary":
+        return `#2196f3`;
+      case "danger":
+        return "red";
+      case "success":
+        return "#4caf50";
+      default:
+        return null;
+    }
+  }};
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: purple;
+
+  &:hover {
+    color: red; /* a:hover demek */
+  }
+
+  p {
+    color: red; /* a'nın içindeki p tag'leri */
+  }
+
+  p & {
+    color: black; /* p'nin içindeki a'lar */
+  }
+
+  &.else {
+    color: blue; /* class'ı else olan a tagleri */
+  }
+`;
+
+const Profile = styled.button`
+  height: 50px;
+  width: 50px;
+  border: 5px solid black;
+  background-color: aqua;
+  border-radius: 50%;
+  cursor: pointer;
+`;
 
 function Header(props) {
   //const projectName = "My First Project";
@@ -34,53 +80,6 @@ function Header(props) {
     addSuffix: true,
     locale: tr,
   });
-
-  const Title = styled.h1`
-    text-align: center;
-    color: ${(props) => {
-      /* props ile data almak için*/
-      switch (props.type) {
-        case "primary":
-          return `#2196f3`;
-        case "danger":
-          return "red";
-        case "success":
-          return "#4caf50";
-        default:
-          return null;
-      }
-    }};
-  `;
-
-  const Link = styled.a`
-    text-decoration: none;
-    color: purple;
-
-    &:hover {
-      color: red; /* a:hover demek */
-    }
-
-    p {
-      color: red; /* a'nın içindeki p tag'leri */
-    }
-
-    p & {
-      color: black; /* p'nin içindeki a'lar */
-    }
-
-    &.else {
-      color: blue; /* class'ı else olan a tagleri */
-    }
-  `;
-
-  const Profile = styled.button`
-    height: 50px;
-    width: 50px;
-    border: 5px solid black;
-    background-color: aqua;
-    border-radius: 50%;
-    cursor: pointer;
-  `;
 
   const Notifications = styled(Profile)`
     background-color: ${getColor()}; /* template literal içinde javascript expression */

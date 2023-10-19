@@ -9,6 +9,7 @@ function CounterController(props) {
         disabled={props.sayac <= 0 ? true : false}
         onClick={props.decrease}
         data-cy="decrease"
+        data-testid="decrease"
       >
         -1 azalt
       </Button>
@@ -17,6 +18,7 @@ function CounterController(props) {
         disabled={props.sayac >= 10 ? true : false}
         onClick={props.increase}
         data-cy="increase"
+        data-testid="increase"
       >
         +1 artır
       </Button>

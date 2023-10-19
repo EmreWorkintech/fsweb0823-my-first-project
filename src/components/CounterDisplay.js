@@ -13,7 +13,11 @@ function CounterDisplay({ name, sayac }) {
   }, []);
 
   return (
-    <h2 data-cy="counter-display" className="text-emre md:text-black">
+    <h2
+      data-cy="counter-display"
+      data-testid="counter-display"
+      className="text-emre md:text-black"
+    >
       {name}'s Counter: {sayac}
     </h2>
   );

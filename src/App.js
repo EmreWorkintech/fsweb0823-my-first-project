@@ -3,6 +3,7 @@ import Header from "./layout/Header";
 import Main from "./layout/Main";
 import { user } from "./api/getUser";
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import SideBar from "./layout/SideBar";
 import Footer from "./layout/Footer";
@@ -42,7 +43,7 @@ function App() {
     setUsers([...users, user]);
   }
   return (
-    <>
+    <Router>
       <Header
         kullanici={loggedUser}
         handleUserChange={handleUserChange}
@@ -60,7 +61,7 @@ function App() {
       </div>
       <Footer />
       <ToastContainer />
-    </>
+    </Router>
   );
 }
 

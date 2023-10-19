@@ -1,26 +1,19 @@
-import { useState } from "react";
 import { Button, Input } from "reactstrap";
 import { useInput } from "../hooks/useInput";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Welcome = () => {
   const [name, handleNameChange] = useInput("");
   const [password, handlePassChange] = useInput("");
 
   //sayfa açıldığında localstorage'dan değer okusun => initialState'ini localstorage'dan almaya çalıştık
-  const [loggedInUser, setLoggedInUser] = useState(
-    localStorage.getItem("registeredUser")
-  );
+  const [loggedInUser, setLoggedInUser] = useLocalStorage("registeredUser", "");
 
   const handleClick = (e) => {
-    //localStorage'a kayıt etsin.
-    localStorage.setItem("registeredUser", name);
-    //loggedInUser değerini değiştirsin.
     setLoggedInUser(name);
-    //ınput alanını sıfırla
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("registeredUser");
     setLoggedInUser(null);
   };
 
