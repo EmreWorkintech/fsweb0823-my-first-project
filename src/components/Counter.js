@@ -1,20 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import "./Counter.css";
 import CounterDisplay from "./CounterDisplay";
 import CounterController from "./CounterController";
+import { countReducer } from "../reducers/countReducer";
 
 const Counter = (props) => {
   //let counter = 0;
-  const [counter, setCounter] = useState(0);
+  //const [counter, setCounter] = useState(0);
+  const [counter, dispatchCount] = useReducer(countReducer, 0);
   const [showCounter, setShowCounter] = useState(true);
 
   function artir() {
-    setCounter(counter + 1);
+    /*
+    const newState = countReducer(counter, { type: "INCREASE" });
+    setCounter(newState);
+    */
+
+    dispatchCount({ type: "INCREASE" });
     //console.log("artır:", counter);
   }
 
   function azalt() {
-    setCounter(counter - 1);
+    /*
+    const newState = countReducer(counter, { type: "DECREASE" });
+    setCounter(newState);
+    */
+
+    dispatchCount({ type: "DECREASE" });
     //console.log("azalt", counter);
   }
 
