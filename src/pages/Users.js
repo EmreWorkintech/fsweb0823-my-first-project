@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import UserList from "../components/user/UserList";
 import Search from "../components/user/Search";
+import { useSelector } from "react-redux";
 
 function Users(props) {
-  const { users } = props;
+  const users = useSelector((store) => store.users);
   const [search, setSearch] = useState("");
 
   const [filteredUsers, setFilteredUsers] = useState(users);

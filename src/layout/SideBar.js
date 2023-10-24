@@ -1,9 +1,10 @@
+import { useSelector } from "react-redux";
 import UserList from "../components/user/UserList";
 import "./SideBar.css";
 import { NavLink, Route } from "react-router-dom";
 
-function SideBar(props) {
-  const { users } = props;
+function SideBar() {
+  const users = useSelector((store) => store.users);
   return (
     <div className="side-container w-1/5 bg-blue-600">
       <NavLink

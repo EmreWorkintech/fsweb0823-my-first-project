@@ -11,16 +11,19 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { addUser, setUsers } from "./store/actions/usersActions";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(user);
-  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
       .get("https://reqres.in/api/users?per_page=12")
       .then((response) => {
-        setUsers(response.data.data);
+        //setUsers(response.data.data);
+        dispatch(setUsers(response.data.data));
       })
       .catch((error) => {
         console.error(error.response.message);
@@ -40,7 +43,8 @@ function App() {
   //console.log("user", loggedUser);
 
   function addNewUser(user) {
-    setUsers([...users, user]);
+    //setUsers([...users, user]);
+    dispatch(addUser(user));
   }
   return (
     <Router>
@@ -51,11 +55,10 @@ function App() {
         total={300}
       />
       <div className="middle-area h-screen">
-        <SideBar users={users} />
+        <SideBar />
         <Main
           name={loggedUser.name}
           handleUserChange={handleUserChange}
-          users={users}
           handleAddNewUser={addNewUser}
         />
       </div>

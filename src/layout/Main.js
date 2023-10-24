@@ -7,9 +7,11 @@ import Login from "../pages/Login";
 import AddUser from "../pages/AddUser";
 import ContactUs from "../pages/ContactUs";
 import Welcome from "../pages/Welcome";
+import { useSelector } from "react-redux";
 
 function Main(props) {
-  const { name, users, handleUserChange, handleAddNewUser } = props; //yöntem 2
+  const { name, handleUserChange, handleAddNewUser } = props; //yöntem 2
+  const users = useSelector((store) => store.users);
 
   return (
     <div className="main-container dark:bg-slate-900 dark:text-white">
@@ -24,7 +26,7 @@ function Main(props) {
           <Counter name={name} />
         </Route>
         <Route exact path="/users">
-          <Users users={users} />
+          <Users />
         </Route>
         <Route path="/users/:id">
           <User />

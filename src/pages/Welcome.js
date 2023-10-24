@@ -1,13 +1,7 @@
 import { Button, Input } from "reactstrap";
-import { useInput } from "../hooks/useInput";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { useReducer } from "react";
-import { loginReducer } from "../reducers/loginReducer";
-
-const initialState = {
-  name: "",
-  password: "",
-};
+import { useDispatch, useSelector } from "react-redux";
+import { changeName, changePassword } from "../store/actions/loginActions";
 
 const Welcome = () => {
   /* useReducer için depreciated
@@ -15,17 +9,22 @@ const Welcome = () => {
   const [password, handlePassChange] = useInput("");
   */
 
-  const [loginForm, dispatchLoginForm] = useReducer(loginReducer, initialState);
+  //const [loginForm, dispatchLoginForm] = useReducer(loginReducer, initialState);
+
+  const loginForm = useSelector((store) => store.login);
+  const dispatch = useDispatch();
 
   //sayfa açıldığında localstorage'dan değer okusun => initialState'ini localstorage'dan almaya çalıştık
   const [loggedInUser, setLoggedInUser] = useLocalStorage("registeredUser", "");
 
   const handleNameChange = (e) => {
-    dispatchLoginForm({ type: "CHANGE_NAME", payload: e.target.value });
+    //dispatchLoginForm({ type: "CHANGE_NAME", payload: e.target.value });
+    dispatch(changeName(e.target.value));
   };
 
   const handlePassChange = (e) => {
-    dispatchLoginForm({ type: "CHANGE_PASSWORD", payload: e.target.value });
+    //dispatchLoginForm({ type: "CHANGE_PASSWORD", payload: e.target.value });
+    dispatch(changePassword(e.target.value));
   };
 
   const handleClick = (e) => {

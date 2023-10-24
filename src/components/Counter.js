@@ -1,13 +1,17 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 import "./Counter.css";
 import CounterDisplay from "./CounterDisplay";
 import CounterController from "./CounterController";
-import { countReducer } from "../reducers/countReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { decrease, increase } from "../store/actions/counterActions";
 
 const Counter = (props) => {
   //let counter = 0;
   //const [counter, setCounter] = useState(0);
-  const [counter, dispatchCount] = useReducer(countReducer, 0);
+  //const [counter, dispatchCount] = useReducer(countReducer, 0);
+  const counter = useSelector((store) => store.counter);
+  const dispatch = useDispatch();
+
   const [showCounter, setShowCounter] = useState(true);
 
   function artir() {
@@ -15,8 +19,8 @@ const Counter = (props) => {
     const newState = countReducer(counter, { type: "INCREASE" });
     setCounter(newState);
     */
-
-    dispatchCount({ type: "INCREASE" });
+    dispatch(increase());
+    //dispatchCount({ type: "INCREASE" });
     //console.log("artır:", counter);
   }
 
@@ -25,8 +29,8 @@ const Counter = (props) => {
     const newState = countReducer(counter, { type: "DECREASE" });
     setCounter(newState);
     */
-
-    dispatchCount({ type: "DECREASE" });
+    dispatch(decrease());
+    //dispatchCount({ type: "DECREASE" });
     //console.log("azalt", counter);
   }
 
@@ -62,9 +66,7 @@ const Counter = (props) => {
 
   return (
     <>
-      {showCounter ? (
-        <CounterDisplay sayac={counter} name={props.name /*Yöntem 1*/} />
-      ) : null}
+      {showCounter ? <CounterDisplay sayac={counter} /> : null}
       <CounterController sayac={counter} increase={artir} decrease={azalt} />
     </>
   );
