@@ -1,13 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Button, Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../store/actions/favUsersActions";
+import { toast } from "react-toastify";
 
 const Users = () => {
   const { id } = useParams();
   const [user, setUser] = useState({});
   const history = useHistory();
+  const dispatch = useDispatch();
+  const favUsers = useSelector((store) => store.favUsers);
 
   function handlePrev() {
     history.goBack();
@@ -30,6 +38,17 @@ const Users = () => {
       });
   }, [id]);
 
+  const handleAddToFav = () => {
+    dispatch(addToFavorites(user));
+  };
+
+  const handleRemoveFromFav = () => {
+    dispatch(removeFromFavorites(Number(id)));
+  };
+
+  const isFavUser = favUsers.find((user) => user.id === Number(id));
+  console.log(favUsers);
+
   return (
     <>
       <Button onClick={handlePrev}>Geri</Button>
@@ -46,6 +65,11 @@ const Users = () => {
           <CardSubtitle className="mb-2 text-muted" tag="h6">
             {user.email}
           </CardSubtitle>
+          {isFavUser ? (
+            <Button onClick={handleRemoveFromFav}>Favorilere Çıkar</Button>
+          ) : (
+            <Button onClick={handleAddToFav}>Favorilere Ekle</Button>
+          )}
         </CardBody>
       </Card>
     </>

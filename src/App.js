@@ -54,7 +54,7 @@ function App() {
         projectName="My Second Project"
         total={300}
       />
-      <div className="middle-area h-screen">
+      <div className="middle-area">
         <SideBar />
         <Main
           name={loggedUser.name}

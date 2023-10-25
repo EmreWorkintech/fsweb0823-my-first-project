@@ -1,16 +1,8 @@
-export const CHANGE_NAME = "changes name on the form";
-export const CHANGE_PASSWORD = "changes password on the form";
+export const SET_LOGGED_IN_USER = "sets logged in user";
 
-export const changeName = (value) => {
+export const setLoggedInUser = (user) => {
   return {
-    type: CHANGE_NAME,
-    payload: value,
-  };
-};
-
-export const changePassword = (value) => {
-  return {
-    type: CHANGE_PASSWORD,
-    payload: value,
+    type: SET_LOGGED_IN_USER,
+    payload: user,
   };
 };

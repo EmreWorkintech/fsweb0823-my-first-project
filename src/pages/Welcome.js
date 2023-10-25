@@ -1,7 +1,8 @@
 import { Button, Input } from "reactstrap";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useDispatch, useSelector } from "react-redux";
-import { changeName, changePassword } from "../store/actions/loginActions";
+import { changeName, changePassword } from "../store/actions/loginFormActions";
+import { setLoggedInUser } from "../store/actions/loginActions";
 
 const Welcome = () => {
   /* useReducer için depreciated
@@ -15,7 +16,7 @@ const Welcome = () => {
   const dispatch = useDispatch();
 
   //sayfa açıldığında localstorage'dan değer okusun => initialState'ini localstorage'dan almaya çalıştık
-  const [loggedInUser, setLoggedInUser] = useLocalStorage("registeredUser", "");
+  const [loggedUser, setLoggedUser] = useLocalStorage("registeredUser", "");
 
   const handleNameChange = (e) => {
     //dispatchLoginForm({ type: "CHANGE_NAME", payload: e.target.value });
@@ -28,20 +29,23 @@ const Welcome = () => {
   };
 
   const handleClick = (e) => {
-    setLoggedInUser(loginForm.name);
+    setLoggedUser(loginForm.name);
+
+    const user = { ...loginForm, role: "Admin" };
+    dispatch(setLoggedInUser(user));
   };
 
   const handleLogout = () => {
-    setLoggedInUser(null);
+    setLoggedUser(null);
   };
 
   // kayıtlı bir isim varsa Welcome :name şeklinde bir metin çıkarsın
   // çıkış butonu olsun.=> localstorage'ı silsin.
   return (
     <>
-      {loggedInUser ? (
+      {loggedUser ? (
         <>
-          <div>Welcome {loggedInUser}</div>
+          <div>Welcome {loggedUser}</div>
           <Button onClick={handleLogout} className="bg-blue-500">
             Logout
           </Button>

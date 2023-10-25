@@ -25,6 +25,10 @@
     background-color: rgb(12, 240, 240);
 }
 
+.side-container .user-container {
+    flex-direction: column;
+}
+
 .side-container .user-list {
     background-color: inherit;
     padding: 2% 0 2% 10%;
