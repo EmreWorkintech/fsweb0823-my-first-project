@@ -11,26 +11,17 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-import { addUser, setUsers } from "./store/actions/usersActions";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, getUsers } from "./store/actions/usersActions";
+import { Alert, Spinner } from "reactstrap";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState(user);
   const dispatch = useDispatch();
+  const users = useSelector((store) => store.users);
 
   useEffect(() => {
-    axios
-      .get("https://reqres.in/api/users?per_page=12")
-      .then((response) => {
-        //setUsers(response.data.data);
-        dispatch(setUsers(response.data.data));
-      })
-      .catch((error) => {
-        console.error(error.response.message);
-      })
-      .finally(() => {
-        console.log("istek sonlandırıldı");
-      });
+    dispatch(getUsers());
   }, []); //didMount
 
   function handleUserChange(user) {
@@ -46,6 +37,24 @@ function App() {
     //setUsers([...users, user]);
     dispatch(addUser(user));
   }
+
+  /*
+  if (users.isFetching) {
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Spinner color="info">Loading...</Spinner>
+      </div>
+    );
+  }
+
+  if (users.error) {
+    return (
+      <div className="h-screen w-screen flex justify-center items-center">
+        <Alert color="danger">{users.error}</Alert>
+      </div>
+    );
+  }
+*/
   return (
     <Router>
       <Header
@@ -56,11 +65,24 @@ function App() {
       />
       <div className="middle-area">
         <SideBar />
-        <Main
-          name={loggedUser.name}
-          handleUserChange={handleUserChange}
-          handleAddNewUser={addNewUser}
-        />
+        {users.isFetching && (
+          <div className="main-container flex items-center justify-center content-center">
+            <Spinner color="info">Loading...</Spinner>
+          </div>
+        )}
+
+        {users.error && (
+          <div className="main-container flex items-center justify-center content-center">
+            <Alert color="danger">{users.error}</Alert>
+          </div>
+        )}
+        {!users.isFetching && !users.error && (
+          <Main
+            name={loggedUser.name}
+            handleUserChange={handleUserChange}
+            handleAddNewUser={addNewUser}
+          />
+        )}
       </div>
       <Footer />
       <ToastContainer />

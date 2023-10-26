@@ -1,29 +1,18 @@
 import { useEffect, useState } from "react";
 import UserList from "../components/user/UserList";
 import Search from "../components/user/Search";
-import { useSelector } from "react-redux";
 
-function Users(props) {
-  const users = useSelector((store) => store.users);
+function Users() {
   const [search, setSearch] = useState("");
-
-  const [filteredUsers, setFilteredUsers] = useState(users);
 
   function handleChange(evt) {
     setSearch(evt.target.value);
   }
 
-  useEffect(() => {
-    const searchResult = users.filter((user) =>
-      user.first_name.includes(search)
-    );
-    setFilteredUsers(searchResult);
-  }, [search, users]);
-
   return (
     <section className="user-area">
       <Search search={search} handleChange={handleChange} />
-      <UserList users={filteredUsers} />
+      <UserList search={search} />
     </section>
   );
 }
