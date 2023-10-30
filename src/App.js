@@ -2,27 +2,35 @@ import "./App.css";
 import Header from "./layout/Header";
 import Main from "./layout/Main";
 import { user } from "./api/getUser";
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { useContext, useEffect } from "react";
 
 import SideBar from "./layout/SideBar";
 import Footer from "./layout/Footer";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, getUsers } from "./store/actions/usersActions";
 import { Alert, Spinner } from "reactstrap";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { SiteGlobalContext } from "./contexts/SiteGlobalProvider";
 
 function App() {
-  const [loggedUser, setLoggedUser] = useState(user);
+  const [loggedUser, setLoggedUser] = useLocalStorage("loggedUser", user);
   const dispatch = useDispatch();
   const users = useSelector((store) => store.users);
 
+  const { theme } = useContext(SiteGlobalContext);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
   useEffect(() => {
     dispatch(getUsers());
-  }, []); //didMount
+  }, [dispatch]); //didMount
 
   function handleUserChange(user) {
     /*     const newUser = {
@@ -56,7 +64,9 @@ function App() {
   }
 */
   return (
-    <Router>
+    <>
+      {" "}
+      {/* CONTEXT.STEP 2: create context Provider component and pass values to value prop */}
       <Header
         kullanici={loggedUser}
         handleUserChange={handleUserChange}
@@ -86,7 +96,7 @@ function App() {
       </div>
       <Footer />
       <ToastContainer />
-    </Router>
+    </>
   );
 }
 

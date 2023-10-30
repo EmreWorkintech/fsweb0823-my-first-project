@@ -2,9 +2,13 @@ import { useSelector } from "react-redux";
 import UserList from "../components/user/UserList";
 import "./SideBar.css";
 import { NavLink, Route } from "react-router-dom";
+import { SiteGlobalContext } from "../contexts/SiteGlobalProvider";
+import { useContext } from "react";
 
 function SideBar() {
   const users = useSelector((store) => store.users);
+  const { loggedUser } = useContext(SiteGlobalContext); //CONTEXT.STEP 3: use context data
+
   return (
     <div className="side-container w-1/5 bg-blue-600">
       <NavLink
@@ -39,6 +43,10 @@ function SideBar() {
       >
         Contact Us
       </NavLink>
+      <div>
+        Logged User: <br />
+        {loggedUser?.first_name}
+      </div>
     </div>
   );
 }

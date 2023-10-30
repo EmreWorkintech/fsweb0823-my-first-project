@@ -16,18 +16,16 @@ export const addUser = (user) => {
 
 export const getUsers = () => (dispatch) => {
   dispatch(getUsersFetching());
-  setTimeout(() => {
-    axios
-      .get("https://reqres.in/api/users?per_page=12")
-      .then((res) => {
-        //console.log(res.data.data);
-        dispatch(getUsersSuccess(res.data.data));
-      })
-      .catch((err) => {
-        //console.error(err.message);
-        dispatch(getUsersError(err.message));
-      });
-  }, 5000);
+  axios
+    .get("https://reqres.in/api/users?per_page=12")
+    .then((res) => {
+      //console.log(res.data.data);
+      dispatch(getUsersSuccess(res.data.data));
+    })
+    .catch((err) => {
+      //console.error(err.message);
+      dispatch(getUsersError(err.message));
+    });
 };
 
 const getUsersFetching = () => {

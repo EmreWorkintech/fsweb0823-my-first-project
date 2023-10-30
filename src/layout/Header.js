@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getFullName } from "../utils/utils";
 import styled from "styled-components";
 import { differenceInDays, formatDistanceToNow } from "date-fns";
 import { tr } from "date-fns/locale";
+import { SiteGlobalContext } from "../contexts/SiteGlobalProvider";
+
 const Title = styled.h1`
   text-align: center;
   color: ${(props) => {
@@ -50,10 +52,17 @@ const Profile = styled.button`
   cursor: pointer;
 `;
 
+const Notifications = styled(Profile)`
+  background-color: ${(props) =>
+    props.getcolor}; /* template literal içinde javascript expression */
+  border-color: ${Math.floor(Math.random() * 2) % 2 === 0 ? "red" : "blue"};
+`;
+
 function Header(props) {
   //const projectName = "My First Project";
   //console.log("props", props)
   const [clickCount, setClickCount] = useState(0);
+  const { toggleDarkMode } = useContext(SiteGlobalContext);
 
   function handleClick() {
     setClickCount(clickCount + 1);
@@ -81,19 +90,10 @@ function Header(props) {
     locale: tr,
   });
 
-  const Notifications = styled(Profile)`
-    background-color: ${getColor()}; /* template literal içinde javascript expression */
-    border-color: ${Math.floor(Math.random() * 2) % 2 === 0 ? "red" : "blue"};
-  `;
-
   //Bonus: Template literal vs adding strings
-  const name = "Emre";
-  const welcomeMessage = `Merhaba ${name}, Hoş geldin!...`;
+  //const name = "Emre";
+  //  const welcomeMessage = `Merhaba ${name}, Hoş geldin!...`;
   //const welcomeMessage = "Merhaba " + name + ", Hoş geldin!..."
-
-  const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark");
-  };
 
   return (
     <header className="dark:bg-slate-900 dark:text-white">
@@ -105,7 +105,7 @@ function Header(props) {
         to {props.projectName}
       </Title>
       <Profile onClick={props.handleUserChange} />
-      <Notifications onClick={handleClick} />
+      <Notifications onClick={handleClick} getcolor={getColor()} />
       <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
       <div>{result} days passed</div>
       <div>{distance}</div>
