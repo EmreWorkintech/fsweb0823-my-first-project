@@ -8,7 +8,6 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from "../store/actions/favUsersActions";
-import { toast } from "react-toastify";
 
 const Users = () => {
   const { id } = useParams();
