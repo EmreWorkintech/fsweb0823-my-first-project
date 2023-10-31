@@ -1,7 +1,10 @@
 import { Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ProtectedPage = ({ pageComponent: PageComponent, fromURL, ...rest }) => {
+  let { id } = useParams();
+
   const isLoggedIn = () => {
     if (localStorage.getItem("token")) {
       return <PageComponent {...rest} />;
@@ -12,7 +15,7 @@ const ProtectedPage = ({ pageComponent: PageComponent, fromURL, ...rest }) => {
         <Redirect
           to={{
             pathname: "/login/protected",
-            state: { referrer: fromURL },
+            state: { referrer: `${fromURL}${id ? id : ""}` },
           }}
         />
       );

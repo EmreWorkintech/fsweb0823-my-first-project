@@ -34,7 +34,7 @@ function Main(props) {
           <ProtectedPage pageComponent={Users} fromURL={"/users"} />
         </Route>
         <Route path="/users/:id">
-          <User />
+          <ProtectedPage pageComponent={User} fromURL={"/users/"} />
         </Route>
         <Route exact path="/user/add">
           <ProtectedPage
