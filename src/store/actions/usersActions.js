@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API } from "../../api/axiosWithAuth";
 
 export const GET_USERS = "gets an users from the API";
 export const GET_USERS_FETCHING = "fetching users started";
@@ -16,8 +17,7 @@ export const addUser = (user) => {
 
 export const getUsers = () => (dispatch) => {
   dispatch(getUsersFetching());
-  axios
-    .get("https://reqres.in/api/users?per_page=12")
+  API.get("/users?per_page=12")
     .then((res) => {
       //console.log(res.data.data);
       dispatch(getUsersSuccess(res.data.data));
