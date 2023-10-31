@@ -7,6 +7,8 @@ import Login from "../pages/Login";
 import AddUser from "../pages/AddUser";
 import ContactUs from "../pages/ContactUs";
 import Welcome from "../pages/Welcome";
+import ProtectedPage from "../pages/ProtectedPage";
+
 import { useSelector } from "react-redux";
 
 function Main(props) {
@@ -19,6 +21,9 @@ function Main(props) {
         <Route exact path="/">
           <Welcome />
         </Route>
+        <Route exact path="/login/protected">
+          <Welcome />
+        </Route>
         <Route exact path="/login">
           {name === "" && <Login handleUserChange={handleUserChange} />}
         </Route>
@@ -26,13 +31,17 @@ function Main(props) {
           <Counter name={name} />
         </Route>
         <Route exact path="/users">
-          <Users />
+          <ProtectedPage pageComponent={Users} fromURL={"/users"} />
         </Route>
         <Route path="/users/:id">
           <User />
         </Route>
         <Route exact path="/user/add">
-          <AddUser handleAddNewUser={handleAddNewUser} />
+          <ProtectedPage
+            pageComponent={AddUser}
+            fromURL={"/user/add"}
+            handleAddNewUser={handleAddNewUser}
+          />
         </Route>
         <Route exact path="/contactus">
           <ContactUs />

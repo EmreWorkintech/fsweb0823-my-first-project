@@ -3,6 +3,8 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName, changePassword } from "../store/actions/loginFormActions";
 import { setLoggedInUser } from "../store/actions/loginActions";
+import axios from "axios";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Welcome = () => {
   /* useReducer için depreciated
@@ -14,6 +16,8 @@ const Welcome = () => {
 
   const loginForm = useSelector((store) => store.login);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
 
   //sayfa açıldığında localstorage'dan değer okusun => initialState'ini localstorage'dan almaya çalıştık
   const [loggedUser, setLoggedUser] = useLocalStorage("registeredUser", "");
@@ -29,10 +33,20 @@ const Welcome = () => {
   };
 
   const handleClick = (e) => {
-    setLoggedUser(loginForm.name);
+    //axios isteği ile login olalım.
+    axios
+      .get("https://6540a96145bedb25bfc247b4.mockapi.io/api/login")
+      .then((res) => {
+        setLoggedUser(loginForm.name);
+        const user = { ...loginForm, role: "Admin" };
+        localStorage.setItem("token", res.data[0].token);
 
-    const user = { ...loginForm, role: "Admin" };
-    dispatch(setLoggedInUser(user));
+        dispatch(setLoggedInUser(user));
+        history.push(location.state.referrer);
+      })
+      .catch((err) => console.error(err));
+
+    // response'daki token'ı local storage'a ekleyelim.
   };
 
   const handleLogout = () => {
