@@ -18,12 +18,7 @@ export const useAxios = (initialValue = null) => {
   const [error, setError] = useState("");
 
   //ADIM 4:
-  const doRequest = ({
-    endpoint,
-    reqType = REQ_TYPES.GET,
-    payload,
-    config,
-  }) => {
+  const doRequest = ({ endpoint, reqType, payload, config }) => {
     setLoading(true);
     API[reqType](endpoint, payload || config, payload && config) // axios instance
       .then((res) => {
