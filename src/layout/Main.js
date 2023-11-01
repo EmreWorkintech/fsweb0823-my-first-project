@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Users from "../pages/Users";
 import NotFound from "../pages/NotFound";
 import User from "../pages/UserPage";
+import UserPageAxiosHook from "../pages/UserPageAxiosHook";
 import Login from "../pages/Login";
 import AddUser from "../pages/AddUser";
 import ContactUs from "../pages/ContactUs";
@@ -10,6 +11,7 @@ import Welcome from "../pages/Welcome";
 import ProtectedPage from "../pages/ProtectedPage";
 
 import { useSelector } from "react-redux";
+import UsersAxiosHook from "../pages/UsersAxiosHook";
 
 function Main(props) {
   const { name, handleUserChange, handleAddNewUser } = props; //yöntem 2
@@ -33,8 +35,20 @@ function Main(props) {
         <Route exact path="/users">
           <ProtectedPage pageComponent={Users} fromURL={"/users"} />
         </Route>
-        <Route path="/users/:id">
+        <Route exact path="/users/axios">
+          <ProtectedPage
+            pageComponent={UsersAxiosHook}
+            fromURL={"/users/axios"}
+          />
+        </Route>
+        <Route exact path="/users/:id">
           <ProtectedPage pageComponent={User} fromURL={"/users/"} />
+        </Route>
+        <Route exact path="/users/axios/:id">
+          <ProtectedPage
+            pageComponent={UserPageAxiosHook}
+            fromURL={"/users/axios"}
+          />
         </Route>
         <Route exact path="/user/add">
           <ProtectedPage

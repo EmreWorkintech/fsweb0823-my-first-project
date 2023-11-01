@@ -10,3 +10,12 @@ export const API = axios.create({
       }
     : {},
 });
+
+export const API_v2 = axios.create({
+  baseURL: "https://6540a96145bedb25bfc247b4.mockapi.io/api/",
+  headers: token
+    ? {
+        Authorization: `Bearer ${token}`,
+      }
+    : {},
+});

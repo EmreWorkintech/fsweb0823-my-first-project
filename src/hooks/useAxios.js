@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API } from "../api/axiosWithAuth";
+import { API_v2 } from "../api/axiosWithAuth";
 import { toast } from "react-toastify";
 
 //ADIM 1:
@@ -20,7 +20,7 @@ export const useAxios = (initialValue = null) => {
   //ADIM 4:
   const doRequest = ({ endpoint, reqType, payload, config }) => {
     setLoading(true);
-    API[reqType](endpoint, payload || config, payload && config) // axios instance
+    API_v2[reqType](endpoint, payload || config, payload && config) // axios instance
       .then((res) => {
         setData(res.data);
         setError("");
